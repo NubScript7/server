@@ -8,7 +8,7 @@ app.use(cors());
 app.set("view engine","pug");
 
 app.get("/",(req,res)=>{
-  res.send("<a href="ip">ip query</a>")
+  res.send("<a href='ip'>ip query</a>")
 })
 
 app.get("/ip",(req,res)=>{
