@@ -1,15 +1,15 @@
 const express = require("express");
-const app = express();
-const http = require("http");
-const server = http.createServer(app)
-const io = require("socket.io")(server);
+const fs = require("fs") = express();
 
-app.get("/",(req,res)=>{
-  res.end("simple template")
+app.set("view engine","pug")
+
+get("*",(req,res)=>{
+  const path = req.url.slice(1,req.url.length);
+  res.render(path)
 })
 
-app.get("*",(req,res)=>{
-  res.end("what are you doing here?")
+app.use((err,req,res)=>{
+  res.status(503).send("how did we get here?")
 })
 
-server.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000)
