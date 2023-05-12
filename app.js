@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const ip = require("ip");
 const fs = require("fs");
 const app = express();
 
@@ -12,7 +11,7 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/ip",(req,res)=>{
-  res.send(ip.address())
+  res.send(req.ip)
 })
 
 app.get("*",(req,res)=>{
