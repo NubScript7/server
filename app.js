@@ -1,10 +1,15 @@
 const express = require("express");
 const cors = require("cors");
 const ip = require("ip");
-const fs = require("fs") = express();
+const fs = require("fs");
+const app = express();
 
 app.use(cors());
 app.set("view engine","pug");
+
+app.get("/",(req,res)=>{
+  res.send("<a href="ip">ip query</a>")
+})
 
 app.get("/ip",(req,res)=>{
   res.send(ip.address())
