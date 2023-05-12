@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  style.
+    body {
+      position: relative;
+      font-family: sans-serif;
+      top: calc(50vh - 130px)
+    }
+
+    h1,p {
+      text-align: center;
+    }
+
+    button {
+      padding: 5px 10px;
+      font-size: 1rem;
+    }
+
+    .force-center-x {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  h1 IpQuery
+  p.ipDisplay 000.000.000.000
+  button.req GET IP
+  script.
+    const btn = document.querySelector("req");
+    const ipdist = document.querySelector("ipDisplay");
+    btn.addEventListener("click",()=>{
+      fetch("/ip")
+      .then(res=>{
+        if(!res.ok){
+          alert('operation failed! Try again.')
+          return "503serverError"
+        }else{
+          return res.text();
+        }
+      })
+      .then(data=>{
+        if(data=="503serverError")return;
+        ipdist.textContent=data
+      })
+    })
